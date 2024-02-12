@@ -24,20 +24,24 @@ class MenuController extends Controller
             'harga_menu' => 'required',
             'gambar_menu' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Sesuaikan dengan kebutuhan
         ]);
-
+    
         // Simpan gambar ke storage
-        $gambarMenuPath = $request->file('gambar_menu')->store('public/menu_images');
-
+        $gambarMenuFileName = $request->file('gambar_menu')->getClientOriginalName(); // Mendapatkan nama file gambar
+    
+        // Pindahkan file gambar ke direktori yang diinginkan
+        $request->file('gambar_menu')->storeAs('public/menu_images', $gambarMenuFileName);
+    
         // Buat entri menu baru
         $menu = new Menu();
         $menu->nama_menu = $validatedData['nama_menu'];
         $menu->deskripsi_menu = $validatedData['deskripsi_menu'];
         $menu->harga_menu = $validatedData['harga_menu'];
-        $menu->gambar_menu = $gambarMenuPath; // Simpan path gambar ke database
+        $menu->gambar_menu = $gambarMenuFileName; // Simpan nama file gambar ke database
         $menu->save();
-
+    
         return response()->json(['message' => 'success']);
     }
+    
 
     public function updateMenu(Request $request, $id)
     {
