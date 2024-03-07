@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BeliMenu;
 use App\Models\Menu;
+use Carbon\Carbon;
 
 class BeliMenuController extends Controller
 {
+    public function pembelianHariIni()
+    {
+        $today = Carbon::today();
+        $pembelianHariIni = BeliMenu::whereDate('created_at', $today)->get();
+
+        return response()->json(['message' => 'success', 'data' => $pembelianHariIni], 200);
+    }
+
     public function listPembelian()
     {
-        $dataPembelian = BeliMenu::get();
+        $dataPembelian = BeliMenu::with('menu')->get();
         return response()->json(['message' => 'success', 'data' => $dataPembelian]);
     }
 

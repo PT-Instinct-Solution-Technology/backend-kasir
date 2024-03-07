@@ -22,6 +22,7 @@ class MenuController extends Controller
             'nama_menu' => 'required',
             'deskripsi_menu' => 'required',
             'harga_menu' => 'required',
+            'jenis_menu' => 'required',
             'gambar_menu' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Sesuaikan dengan kebutuhan
         ]);
     
@@ -36,6 +37,7 @@ class MenuController extends Controller
         $menu->nama_menu = $validatedData['nama_menu'];
         $menu->deskripsi_menu = $validatedData['deskripsi_menu'];
         $menu->harga_menu = $validatedData['harga_menu'];
+        $menu->jenis_menu = $validatedData['jenis_menu'];
         $menu->gambar_menu = $gambarMenuFileName; // Simpan nama file gambar ke database
         $menu->save();
     
@@ -50,6 +52,7 @@ class MenuController extends Controller
             'nama_menu' => 'required',
             'deskripsi_menu' => 'required',
             'harga_menu' => 'required',
+            'jenis_menu' => 'required',
             'gambar_menu' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Bisa nullable
         ]);
 
@@ -74,6 +77,7 @@ class MenuController extends Controller
         $menu->nama_menu = $validatedData['nama_menu'];
         $menu->deskripsi_menu = $validatedData['deskripsi_menu'];
         $menu->harga_menu = $validatedData['harga_menu'];
+        $menu->jenis_menu = $validatedData['jenis_menu'];
         $menu->save();
 
         return response()->json(['message' => 'success']);

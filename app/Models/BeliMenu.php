@@ -9,4 +9,9 @@ class BeliMenu extends Model
 {
     use HasFactory;
     protected $fillable = ['jumlah_beli', 'menu_id'];
+
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
 }

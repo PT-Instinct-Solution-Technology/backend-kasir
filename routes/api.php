@@ -33,6 +33,7 @@ Route::group([
             Route::post('/pembelian', [BeliMenuController::class, 'createPembelian']);
             Route::put('/pembelian/{id}', [BeliMenuController::class, 'updatePembelian']);
             Route::delete('/pembelian/{id}', [BeliMenuController::class, 'deletePembelian']);
+            Route::get('/pembelian-hari-ini', [BeliMenuController::class, 'pembelianHariIni']);
         });
     });
 });

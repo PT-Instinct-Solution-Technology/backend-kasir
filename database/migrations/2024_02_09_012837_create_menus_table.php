@@ -19,6 +19,10 @@ class CreateMenusTable extends Migration
             $table->string('deskripsi_menu');
             $table->string('harga_menu');
             $table->string('gambar_menu');
+            $table->enum('jenis_menu', [
+                '0', // makanan
+                '1' // minuman
+            ]);
             $table->timestamps();
         });
     }
