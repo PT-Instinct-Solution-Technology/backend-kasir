@@ -120,7 +120,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'sub' => auth()->user()->id,
-            'nama' => auth()->user()->nama,
+            'nama' => auth()->user()->name,
             'email' => auth()->user()->email,
             'level' => auth()->user()->level,
             'status' => auth()->user()->status,
